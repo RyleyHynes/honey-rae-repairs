@@ -6,16 +6,18 @@ import "./Login.css"
 export const Login = () => {
     const [email, set] = useState("hpassfield7@netvibes.com")
     const navigate = useNavigate()
-
+//function that handles clicking on the login button
     const handleLogin = (e) => {
         e.preventDefault()
-
+//making a fetch call to JSON server looking at the users collection to find anybody who matches that email
         return fetch(`http://localhost:8088/users?email=${email}`)
             .then(res => res.json())
             .then(foundUsers => {
                 if (foundUsers.length === 1) {
                     const user = foundUsers[0]
+//if it is a valid login and a valid email in localStorage im setting the item of honey user
                     localStorage.setItem("honey_user", JSON.stringify({
+//honey_user has two properties ID Staff
                         id: user.id,
                         staff: user.isStaff
                     }))

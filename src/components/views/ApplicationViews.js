@@ -1,22 +1,22 @@
-import { Outlet, Route, Routes } from "react-router-dom"
-import { TicketForm } from "../tickets/TicketForm"
-import { TicketList } from "../tickets/TicketList"
+import { CustomerViews } from "./CustomerViews"
+import { EmployeeViews } from "./EmployeeViews"
+
+
 
 export const ApplicationViews = () => {
-	return (
-        <Routes>
-            <Route path="/" element={
-                <>
-                    <h1>Honey Rae Repair Shop</h1>
-                    <div>Your one-stop-shop to get all your electronics fixed</div>
 
-                    <Outlet />
-                </>
-            }>
+    //we need to get honey user out of local storage and right now its just a string 
+    const localHoneyUser = localStorage.getItem("honey_user")
+    //we need to convert it into an object so that we can use it in our code (now honeyUserObject will be an object with two keys on it ID and Staff)
+    const honeyUserObject = JSON.parse(localHoneyUser)
 
-                <Route path="tickets" element={ <TicketList /> } />
-				<Route path="ticket/create" element={ <TicketForm /> } />
-            </Route>
-        </Routes>
-    )
+    if (honeyUserObject.staff) {
+        //return employee views
+        return <EmployeeViews />
+    }
+    else {
+        //return customer views 
+        return <CustomerViews />
+    }
+
 }

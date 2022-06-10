@@ -43,13 +43,17 @@ export const TicketForm = () => {
         return fetch(`http://localhost:8088/serviceTickets`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+//JSON server wants to know that it is being passed JSON and this is how we specify it with an HTTP header
+                "Content-Type": "application/json" 
             },
+//the body is the information the client wants the API to save (cant send a raw javascript object, so we stringify)
             body: JSON.stringify(ticketToSendToApi)
-        })
+        }) 
+//the object has been saved in the api, the JSON server has responded
             .then(response => response.json())
             .then(() => {
-                navigate("/tickets")
+                //immediately direct the user back to the ticket list 
+                navigate("/tickets") //the route for ticket list is /tickets and can be seen in ApplicationView.js
             })
     }
 
@@ -67,8 +71,10 @@ export const TicketForm = () => {
                         value={ticket.description}
                         onChange={
                             (evt) => {
-                                const copy = { ...ticket }
-                                copy.description = evt.target.value
+                                const copy = { ...ticket } //short hand notation for copying an object (copy of existing state)
+                                //modifying property 
+                                copy.description = evt.target.value //value of the target of the event
+//since we changed the value of state we need to update the copy of state  
                                 update(copy)
                             }
                         } />
@@ -81,8 +87,10 @@ export const TicketForm = () => {
                         value={ticket.emergency}
                         onChange={
                             (evt) => {
-                                const copy = { ...ticket }
-                                copy.emergency = evt.target.checked
+                                const copy = { ...ticket }  //short hand notation for copying an object (copy of existing state)
+                                //modifying property 
+                                copy.emergency = evt.target.checked //value of the target of the event (.checked because we are using a checkbox)
+//since we changed the value of state we need to update the copy of state 
                                 update(copy)
                             }
                         } />
