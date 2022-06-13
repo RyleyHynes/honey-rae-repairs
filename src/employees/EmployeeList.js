@@ -22,7 +22,9 @@ useEffect(
 
 return <article className="employees">
 {
-    employees.map(employee => <Employee id={employee.id} fullName={employee.fullName} email={employee.email}  />)
+    employees.map(employee => <Employee key={`employee--${employee.id}`}
+        id={employee.id} fullName={employee.fullName} 
+        email={employee.email}  />)
         //we need an employee key because we are iterating over and over again
         
     

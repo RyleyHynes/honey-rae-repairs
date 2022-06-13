@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "./Tickets.css"
 
 //TicketList Component 
@@ -116,7 +116,10 @@ export const TicketList = ({ searchTermsState }) => {
                     //for each ticket as we iterate the object array return this html representation of a ticket
                     (ticket) => {
                         return <section className="ticket">
-                            <header>{ticket.description}</header>
+                            <header>
+                                <Link to={`/tickets/${id}/edit`}>Ticket {ticket.id}</Link>
+                            </header>
+                            <section>{ticket.description}</section>
                             <footer>Emergency: {ticket.emergency ? "🧨" : "No"}</footer>
                         </section>
                     }

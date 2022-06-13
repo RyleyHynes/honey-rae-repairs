@@ -12,8 +12,14 @@ export const EmployeeNav = () => {
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/employees">Employees</Link>
             </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/customers">Customers</Link>
+            </li>
+            <li className="navbar__item active">
+                <Link className="navbar__link" to="/profile">Profile</Link>
+            </li>
             {
-                localStorage.getItem("honey_user")
+                localStorage.getItem("honey_user") 
                     ? <li className="navbar__item navbar__logout">
 {/* Link creates a hyperlink for logout which has a custom onClick so everytime logout is clicked we are removing
 from local storage, an item called honey_user and then im redirecting the user back to the base 

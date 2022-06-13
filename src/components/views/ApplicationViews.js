@@ -1,3 +1,4 @@
+import { EmployeeDetails } from "../../employees/EmployeeDetails"
 import { CustomerViews } from "./CustomerViews"
 import { EmployeeViews } from "./EmployeeViews"
 
